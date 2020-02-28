@@ -12,7 +12,7 @@ function App() {
       </Link>
 
       <div className='App'>
-        <Route exact path='/'>
+        <Route exact path='/Login'>
           <Login />
         </Route>
         {
