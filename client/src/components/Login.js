@@ -22,7 +22,7 @@ const Login = () => {
       .then(response => {
         const token = response.data.payload;
         localStorage.setItem("token", token);
-        history.push("/BubblesPage");
+        history.push("/BubblePage");
 
         // debugger;
       })
