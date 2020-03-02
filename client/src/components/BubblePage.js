@@ -7,16 +7,20 @@ const BubblePage = () => {
   const [colorList, setColorList] = useState([]);
   // fetch your colors data from the server when the component mounts
   // set that data to the colorList state property
-  // debugger;
-  WithAuth()
-    .get("http://localhost:5000/api/colors")
-    .then(rep => {
-      setColorList(rep.data);
-    })
-    .catch(err => {
-      debugger;
-      // alert(err.response.data.error);
-    });
+  // debugger
+
+  useEffect(() => {
+    WithAuth()
+      .get("http://localhost:5000/api/colors")
+      .then(rep => {
+        setColorList(rep.data);
+      })
+      .catch(err => {
+        debugger;
+        // alert(err.response.data.error);
+      });
+  }, [colorList]);
+
   if (!colorList) {
     return <h1>loading</h1>;
   }

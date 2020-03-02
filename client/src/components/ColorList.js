@@ -8,7 +8,7 @@ const initialColor = {
 };
 
 const ColorList = ({ colors, updateColors }) => {
-  console.log(colors);
+  // console.log(colors);
   const [editing, setEditing] = useState(false);
   const [colorToEdit, setColorToEdit] = useState(initialColor);
 
@@ -33,10 +33,12 @@ const ColorList = ({ colors, updateColors }) => {
         code: colorCode
       })
       .then(resp => {
-        setColorToEdit(resp.data);
+        // setColorToEdit(resp.data);
         debugger;
       })
-      .catch(err => {});
+      .catch(err => {
+        debugger;
+      });
   };
 
   const deleteColor = color => {
@@ -75,7 +77,7 @@ const ColorList = ({ colors, updateColors }) => {
           </li>
         ))}
       </ul>
-      {editing && (
+      {editing && colorToEdit && (
         <form
         // onSubmit={({ colorName, colorCode }) => {
         //   saveEdit({
