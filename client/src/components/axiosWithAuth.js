@@ -4,7 +4,7 @@ function WithAuth() {
   const comToken = localStorage.getItem("token");
   const instant = axios.create({
     headers: {
-      "Content-Type": "application / json",
+      "Content-Type": "application/json",
       Authorization: comToken
     }
   });
