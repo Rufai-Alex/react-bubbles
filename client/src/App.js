@@ -1,21 +1,38 @@
 import React, { useState } from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
-
+import { Route, withRouter, Redirect, Link } from "react-router-dom";
 import Login from "./components/Login";
 import "./styles.scss";
+import BubblePage from "./components/BubblePage";
 
 function App() {
   return (
-    <Router>
-      <div className="App">
-        <Route exact path="/" component={Login} />
-        {/* 
+    <>
+      <Link to='/BubblePage'>
+        <button>BubblePage</button>
+      </Link>
+
+      <div className='App'>
+        <Route exact path='/Login'>
+          <Login />
+        </Route>
+        {
+          /* 
           Build a PrivateRoute component that will 
           display BubblePage when you're authenticated 
-        */}
+        */
+          <PrivateRoute path='/BubblePage'>
+            <BubblePage />
+          </PrivateRoute>
+        }
       </div>
-    </Router>
+    </>
+  );
+}
+function PrivateRoute({ children, ...rest }) {
+  const checkToken = localStorage.getItem("token");
+  return (
+    <Route {...rest}>{checkToken ? children : <Redirect to='/Login' />}</Route>
   );
 }
 
-export default App;
+export default withRouter(App);
